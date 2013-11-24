@@ -1,0 +1,3 @@
+#!/bin/sh
+
+node ../cpu-daemon.js &> ../logs/cpu-daemon.log &

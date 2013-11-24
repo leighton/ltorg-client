@@ -1,0 +1,9 @@
+{
+    "name": "ltorg-client"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "node-pusher" : "*",
+      "hmmac" : "0.1.1"
+  }
+}

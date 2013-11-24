@@ -55,9 +55,9 @@ process.on('uncaughtException', function (err) {
 var updater = new client.UpdateClient({
   hmmac : require('./etc/hmmac-config.json'),
   pusher_cred : require('./etc/pusher-key.json'),
-  api_cred : require('./etc/api-key.json'),
-  host : "localhost",
-  port : "3000"
+  api_cred : require('./etc/api-key.json')
+  //,host : "localhost"
+  //,port : "3000"
 });
 
 updater.activity(values['-m'],values['-t'], function(res) {

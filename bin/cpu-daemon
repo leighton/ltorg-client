@@ -1,3 +1,5 @@
 #!/bin/sh
 
-node ../cpu-daemon.js &> ../logs/cpu-daemon.log &
+dir=`dirname "$(readlink "$0")"`
+
+node $dir/../cpu-daemon.js &> $dir/../logs/cpu-daemon.log &

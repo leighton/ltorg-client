@@ -2,7 +2,6 @@ var client = require('./lib/client.js');
 
 var values = (function(){
   var args=process.argv.splice(2);
-
   if(args.length==0){
     console.log('Usage: ./activity.js -t <timeout> -m "<message>"');
     process.exit(1);
@@ -33,6 +32,14 @@ var values = (function(){
   };
 
   args.forEach(function(v,i){
+    if(v=='-t') {
+      vals[v] = arg_parser[v](args[i+1]);
+    } else if (v=='-m') {
+      vals[v] = arg_parser[v](args.splice(i+1).join(" "));
+    } else {
+      new Error("No argument for "+v);
+    }
+    /*This suddenly stopped working when upgrading node
     if(v.charAt(0)=='-'){
       if(arg_parser[v]!==undefined){
         if(args.length>=i+2){
@@ -44,6 +51,7 @@ var values = (function(){
         throw Error('Could not parse arguments '+v);
       }
     }	
+    */
   });
   return vals;
 }());
@@ -59,6 +67,7 @@ var updater = new client.UpdateClient({
   //,host : "localhost"
   //,port : "3000"
 });
+
 
 updater.activity(values['-m'],values['-t'], function(res) {
   console.log('STATUS: ' + res.statusCode);
